@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: b734ca2a881bba04180275df62931018
+labels:
+- Animator
+- Bezier
+- Catmull
+- CatmullRom
+- Curve
+- Hermite
+- Interpolator
+- Rom
+- Spline
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
