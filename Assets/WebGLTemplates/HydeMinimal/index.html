@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | %UNITY_WEB_NAME%</title>
+    <script src="%UNITY_WEBGL_LOADER_URL%"></script>
+    <script>
+      UnityLoader.instantiate("unityContainer", "%UNITY_WEBGL_BUILD_URL%");
+    </script>
+  </head>
+  <body>
+    <div id="unityContainer" style="width: 100%; height: 100%; margin: auto"></div>
+  </body>
+
+  <script>
+    // document.cookie = "ALIAS=Invitado";
+    // const gameURL = 'https://';
+    const openInformation = () => window.open("https://www.github.com/hydekyle", "_blank");
+    // const gameover = () => window.open(gameURL + "gameover.php", "_self");
+  </script>
+
+  <!-- Compartir en Facebook -->
+<!-- <script>
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: '670721590279787',
+      autoLogAppEvents: true,
+      xfbml: true,
+      version: 'v9.0'
+    });
+  };
+
+  function compartirEnFacebook(puesto, puntos) {
+    FB.ui({
+      method: 'share',
+      href: gameURL,
+      quote: `¡Voy en ${puesto}º puesto con ${puntos} puntos!`,
+    }, function (response) { });
+  }
+</script> -->
+<!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script> -->
+</html>

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 450252798399011243}
   - component: {fileID: 450252798399011240}
   - component: {fileID: 450252798399011241}
-  - component: {fileID: 2272788756680175057}
   - component: {fileID: 5824216268351239431}
   m_Layer: 6
   m_Name: PLAYER
@@ -45,12 +44,10 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -98,12 +95,10 @@ TrailRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -194,36 +189,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!68 &2272788756680175057
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450252798399011242}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.14667812, y: -0.29796225}
-  - {x: -0.16036262, y: -0.2929862}
-  - {x: -0.19743502, y: -0.17128864}
-  - {x: -0.1731611, y: 0.15274724}
-  - {x: -0.09995824, y: 0.36624506}
-  - {x: -0.006592095, y: 0.4732336}
-  - {x: 0.08875504, y: 0.35855395}
-  - {x: 0.16695033, y: 0.10114077}
-  - {x: 0.17439419, y: -0.18211654}
-  - {x: 0.14663646, y: -0.29823813}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!114 &5824216268351239431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,3 +201,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a8df9b211c31941a5e6f3d42e6048a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  rendererPlayer: {fileID: 0}
+  orbitRadius: 0
+  rotationSpeed: 0.5
+  dir: 1
+  rotationBaseTime: 0
+  maxY: 3
+  minY: 1
+  speedMovementY: 2
