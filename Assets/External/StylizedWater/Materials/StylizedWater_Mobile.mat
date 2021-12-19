@@ -64,7 +64,7 @@ Material:
     - _FoamOpacity: 0.1
     - _FoamSize: 0
     - _FoamSpeed: 0.1
-    - _FoamTiling: 0.15
+    - _FoamTiling: 0.3
     - _Fresnelexponent: 2.6
     - _Glossiness: 1
     - _HighlightPanning: 0
@@ -83,9 +83,9 @@ Material:
     - _RefractionAmount: 0.057
     - _RimDistance: 0.899
     - _RimDistortion: 0.139
-    - _RimSize: 4.6
-    - _Rimfalloff: 1.8
-    - _Rimtiling: 0.5
+    - _RimSize: 5.9
+    - _Rimfalloff: 4.8
+    - _Rimtiling: 0.3
     - _SECONDARY_WAVES: 0
     - _SurfaceHighlight: 0.03
     - _SurfaceHighlightsDistortion: 0.45
@@ -100,9 +100,9 @@ Material:
     - _UseIntersectionFoam: 1
     - _UseIntersectionHighlight: 0
     - _WaveFoam: 0
-    - _WaveHeight: 0.011
+    - _WaveHeight: 0.111
     - _WaveSize: 0.1
-    - _Wavesspeed: 0.75
+    - _Wavesspeed: 1
     - _Wavesstrength: 0.031
     - _Wavetint: 0.5
     - _Worldspacetiling: 0

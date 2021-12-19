@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     Player player;
     int activeCoins = 0;
     int score = 0;
-    float levelStartedTime;
+    public float levelStartedTime;
 
     void Start()
     {
@@ -37,11 +37,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameStart()
+    async public void GameStart()
     {
         maxScore.gameObject.SetActive(false);
         SpawnCoins();
         enemy.AwakeEnemy();
+        await UniTask.DelayFrame(10);
+        levelStartedTime = Time.time;
         isGameStarted = true;
     }
 
@@ -51,8 +53,6 @@ public class GameManager : MonoBehaviour
         IncreaseDifficulty();
         ScoreTimeBonus();
         SpawnCoins();
-        levelStartedTime = Time.time;
-        audioSource.PlayOneShot(jiggleLevelCompleted);
     }
 
     void IncreaseDifficulty()
@@ -60,17 +60,24 @@ public class GameManager : MonoBehaviour
         enemy.LevelUp();
     }
 
-    void ScoreTimeBonus()
+    async void ScoreTimeBonus()
     {
         var timePassed = (Time.time - levelStartedTime);
-        var timeScore = Mathf.Clamp(1000 - (int)timePassed * 30, 0, 1000);
-        if (timeScore > 0)
+        levelStartedTime = Time.time;
+        await UniTask.DelayFrame(50);
+        if (playerT.gameObject.activeSelf)
         {
-            timeBonusText.text = "Time Bonus!\n+" + timeScore;
-            timeBonusAnimator.transform.position = playerT.position;
-            timeBonusAnimator.Play(0);
-            AddScore(timeScore);
+            audioSource.PlayOneShot(jiggleLevelCompleted);
+            var timeScore = Mathf.Clamp(1450 - (int)timePassed * 50, 0, 1000);
+            if (timeScore > 0)
+            {
+                timeBonusText.text = "Time Bonus!\n+" + timeScore;
+                timeBonusAnimator.transform.position = playerT.position;
+                timeBonusAnimator.Play(0);
+                AddScore(timeScore);
+            }
         }
+
     }
 
     public void AddScore(int addScore)
@@ -123,8 +130,8 @@ public class GameManager : MonoBehaviour
         }
         playerT.gameObject.SetActive(false);
         audioSource.PlayOneShot(playerDie);
-        await UniTask.DelayFrame(30);
+        await UniTask.DelayFrame(10);
         await UniTask.WaitUntil(() => Input.GetMouseButtonDown(0));
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7925947078467774587
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1000013276728082, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_Name
+      value: StylizedWater_Mobile Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.065279
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.065279
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.065279
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010198742726, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: shaderIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: waterColor.b
+      value: 0.7264151
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: waterColor.g
+      value: 0.44174257
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: waterColor.r
+      value: 0.03769135
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: isMobilePlatform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: worldSpaceTiling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: waterShallowColor.b
+      value: 0.65405124
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: waterShallowColor.g
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: waterShallowColor.r
+      value: 0.2741189
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: shaderNames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012808803664, guid: aad92e3fb9d6ac741b40be74dcab3cd5,
+        type: 3}
+      propertyPath: shaderNames.Array.data[0]
+      value: Mobile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aad92e3fb9d6ac741b40be74dcab3cd5, type: 3}
