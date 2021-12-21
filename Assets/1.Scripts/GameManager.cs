@@ -6,6 +6,7 @@ using EZObjectPools;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityObservables;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class ObservableInt : Observable<int> { }
@@ -18,12 +19,14 @@ public class GameManager : MonoBehaviour
     public EZObjectPool poolCoins;
     public Enemy enemy;
     public TMP_Text scoreText, maxScore, timeBonusText;
+    public GameObject buttonReward;
     public Animator timeBonusAnimator;
     public AudioSource audioSource;
-    public AudioClip coinGrab, jiggleLevelCompleted, wowRisky, playerDie;
+    public AudioClip coinGrab, jiggleLevelCompleted, wowRisky, playerDie, playSound;
     [Header("Configuration")]
     public int totalCoins = 30;
     public ObservableInt levelNumber = new ObservableInt() { Value = 1 };
+    public UnityEvent onStartGame;
     [HideInInspector]
     public bool isGameStarted = false;
     Player player;
@@ -47,6 +50,7 @@ public class GameManager : MonoBehaviour
             maxScore.text = "MAX SCORE: \n " + score.ToString();
         }
         AdManager.ShowBannerAD();
+        if (AdManager.gameCount > 0 && AdManager.isShowingAds) buttonReward.SetActive(true);
     }
 
     void OnLevelChanged()
@@ -58,9 +62,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    async public void GameStart()
+    async void GameStart()
     {
-        maxScore.gameObject.SetActive(false);
+        audioSource.PlayOneShot(playSound);
+        AdManager.gameCount++;
         SpawnCoins();
         enemy.AwakeEnemy();
         await UniTask.DelayFrame(10);
@@ -126,15 +131,7 @@ public class GameManager : MonoBehaviour
 
     public async void EndGame()
     {
-        if (PlayerPrefs.HasKey("Score"))
-        {
-            var maxScore = PlayerPrefs.GetInt("Score");
-            if (score > maxScore) PlayerPrefs.SetInt("Score", score);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("Score", score);
-        }
+        SaveScore();
         playerT.gameObject.SetActive(false);
         audioSource.PlayOneShot(playerDie);
         enemy.SleepEnemy();
@@ -144,9 +141,30 @@ public class GameManager : MonoBehaviour
         AdManager.ShowInterstitialAD();
     }
 
-    public void ShowRewardButton()
+    void SaveScore()
+    {
+        if (PlayerPrefs.HasKey("Score"))
+        {
+            var maxScore = PlayerPrefs.GetInt("Score");
+            if (score > maxScore) PlayerPrefs.SetInt("Score", score);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Score", score);
+        }
+    }
+
+    public void ButtonShowReward()
     {
         AdManager.ShowRewardAD();
+        buttonReward.SetActive(false);
+    }
+
+    public void ButtonPlay()
+    {
+        if (Time.timeSinceLevelLoad < 0.1f) return; //Avoid missclicks
+        onStartGame.Invoke();
+        GameStart();
     }
 
 }

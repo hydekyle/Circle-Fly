@@ -16,6 +16,8 @@ public class AdManager : MonoBehaviour
     public static bool isShowingAds = true;
     public static bool isInitialized = false;
 
+    public static int gameCount = 0;
+
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -25,33 +27,41 @@ public class AdManager : MonoBehaviour
     {
         MobileAds.Initialize(async initStatus =>
         {
-            rewardedAd = new RewardedAd(admobRewardID);
-            bannerAd = new BannerView(admobBannerID, AdSize.Banner, AdPosition.Bottom);
-            interstitialAd = new InterstitialAd(admobInterstitialID);
-            AdRequest request = new AdRequest.Builder().Build();
-            interstitialAd.LoadAd(request);
-            rewardedAd.LoadAd(request);
-            rewardedAd.OnUserEarnedReward += GetReward;
-            await UniTask.WaitUntil(() => interstitialAd.IsLoaded() == true);
-            await UniTask.WaitUntil(() => rewardedAd.IsLoaded() == true);
+            await PreloadAds();
             isInitialized = true;
         });
     }
 
-    public void GetReward(object sender, Reward args)
+    async UniTask PreloadAds()
+    {
+        rewardedAd = new RewardedAd(admobRewardID);
+        bannerAd = new BannerView(admobBannerID, AdSize.Banner, AdPosition.Bottom);
+        interstitialAd = new InterstitialAd(admobInterstitialID);
+        AdRequest request = new AdRequest.Builder().Build();
+        interstitialAd.LoadAd(request);
+        rewardedAd.LoadAd(request);
+        rewardedAd.OnUserEarnedReward += GetReward;
+        await UniTask.WaitUntil(() => interstitialAd.IsLoaded() == true);
+        await UniTask.WaitUntil(() => rewardedAd.IsLoaded() == true);
+    }
+
+    public async void GetReward(object sender, Reward args)
     {
         bannerAd.Destroy();
         interstitialAd.Destroy();
+        //string type = args.Type;
+        double gamesWithoutAds = args.Amount;
         isShowingAds = false;
-        string type = args.Type;
-        double amount = args.Amount;
-        GameManager.Instance.scoreText.text = args.Amount.ToString();
+        var againAds = gameCount + gamesWithoutAds;
+        await UniTask.WaitUntil(() => gameCount == againAds);
+        await PreloadAds();
+        isShowingAds = true;
     }
 
 
     public static void ShowRewardAD()
     {
-        if (rewardedAd != null) rewardedAd.Show();
+        if (isShowingAds) rewardedAd.Show();
     }
 
     public static void ShowBannerAD()
