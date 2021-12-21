@@ -2275,7 +2275,7 @@ PrefabInstance:
     - target: {fileID: 224199260265255058, guid: c0df0988b9b069b4b82e51ff1f75737b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224199260265255058, guid: c0df0988b9b069b4b82e51ff1f75737b,
         type: 3}
@@ -2365,7 +2365,7 @@ PrefabInstance:
     - target: {fileID: 224199260265255058, guid: c0df0988b9b069b4b82e51ff1f75737b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -335
+      value: -149
       objectReference: {fileID: 0}
     - target: {fileID: 224199260265255058, guid: c0df0988b9b069b4b82e51ff1f75737b,
         type: 3}
@@ -3150,6 +3150,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7812510290599623979, guid: 22df4643a65d39945a088479ea901b6d,
         type: 3}
+      propertyPath: shaderIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812510290599623979, guid: 22df4643a65d39945a088479ea901b6d,
+        type: 3}
       propertyPath: showSurface
       value: 0
       objectReference: {fileID: 0}
@@ -3166,6 +3171,11 @@ PrefabInstance:
     - target: {fileID: 7812510290599623979, guid: 22df4643a65d39945a088479ea901b6d,
         type: 3}
       propertyPath: showHighlights
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812510290599623979, guid: 22df4643a65d39945a088479ea901b6d,
+        type: 3}
+      propertyPath: isMobilePlatform
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7812510290599623979, guid: 22df4643a65d39945a088479ea901b6d,
@@ -3193,6 +3203,21 @@ PrefabInstance:
       propertyPath: waveHeightmapStyle
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7812510290599623979, guid: 22df4643a65d39945a088479ea901b6d,
+        type: 3}
+      propertyPath: shaderNames.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812510290599623979, guid: 22df4643a65d39945a088479ea901b6d,
+        type: 3}
+      propertyPath: shaderNames.Array.data[0]
+      value: Desktop
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812510290599623979, guid: 22df4643a65d39945a088479ea901b6d,
+        type: 3}
+      propertyPath: shaderNames.Array.data[1]
+      value: Mobile
+      objectReference: {fileID: 0}
     - target: {fileID: 7922019912068079293, guid: 22df4643a65d39945a088479ea901b6d,
         type: 3}
       propertyPath: m_RootOrder
@@ -3201,17 +3226,17 @@ PrefabInstance:
     - target: {fileID: 7922019912068079293, guid: 22df4643a65d39945a088479ea901b6d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.04935247
+      value: 0.0870775
       objectReference: {fileID: 0}
     - target: {fileID: 7922019912068079293, guid: 22df4643a65d39945a088479ea901b6d,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.04935247
+      value: 0.0870775
       objectReference: {fileID: 0}
     - target: {fileID: 7922019912068079293, guid: 22df4643a65d39945a088479ea901b6d,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.04935247
+      value: 0.0870775
       objectReference: {fileID: 0}
     - target: {fileID: 7922019912068079293, guid: 22df4643a65d39945a088479ea901b6d,
         type: 3}

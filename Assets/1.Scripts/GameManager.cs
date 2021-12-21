@@ -49,8 +49,11 @@ public class GameManager : MonoBehaviour
             var score = PlayerPrefs.GetInt("Score");
             maxScore.text = "MAX SCORE: \n " + score.ToString();
         }
-        AdManager.ShowBannerAD();
-        if (AdManager.gameCount > 0 && AdManager.isShowingAds) buttonReward.SetActive(true);
+        if (Application.isMobilePlatform)
+        {
+            AdManager.ShowBannerAD();
+            if (AdManager.gameCount > 0 && AdManager.isShowingAds) buttonReward.SetActive(true);
+        }
     }
 
     void OnLevelChanged()

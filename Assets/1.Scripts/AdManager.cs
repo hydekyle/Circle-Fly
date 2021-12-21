@@ -5,17 +5,16 @@ using Cysharp.Threading.Tasks;
 
 public class AdManager : MonoBehaviour
 {
-    public string admobBannerID = "ca-app-pub-3940256099942544/6300978111";
-    public string admobInterstitialID = "ca-app-pub-3940256099942544/1033173712";
-    public string admobRewardID = "ca-app-pub-3940256099942544/5224354917";
+    public string admobBannerID = "ca-app-pub-3116414566105309/5018669640"; // testing: "ca-app-pub-3940256099942544/6300978111" 
+    public string admobInterstitialID = "ca-app-pub-3116414566105309/2967221373"; // testing: "ca-app-pub-3940256099942544/1033173712" 
+    public string admobRewardID = "ca-app-pub-3116414566105309/5210241333"; // testing: "ca-app-pub-3940256099942544/5224354917" 
 
     public static BannerView bannerAd;
     public static InterstitialAd interstitialAd;
     public static RewardedAd rewardedAd;
 
-    public static bool isShowingAds = true;
+    public static bool isShowingAds = false;
     public static bool isInitialized = false;
-
     public static int gameCount = 0;
 
     void Awake()
@@ -25,11 +24,21 @@ public class AdManager : MonoBehaviour
 
     void Start()
     {
-        MobileAds.Initialize(async initStatus =>
+        if (Application.isMobilePlatform)
         {
-            await PreloadAds();
+            MobileAds.Initialize(async initStatus =>
+            {
+                await PreloadAds();
+                isInitialized = true;
+                isShowingAds = true;
+            });
+        }
+        else
+        {
             isInitialized = true;
-        });
+            isShowingAds = false;
+            return;
+        }
     }
 
     async UniTask PreloadAds()
