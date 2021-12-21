@@ -7,38 +7,47 @@ public class Enemy : MonoBehaviour
 {
     public EZObjectPool poolBullets;
     List<Transform> cannons = new List<Transform>();
-    public float bulletSpeed = 0.6f;
-    public float bulletCooldown = 0.8f;
-    float timeLastBullet;
+    public float bulletInitialSpeed = 0.6f, bulletInitialCooldown = 0.8f;
+    public float bulletSpeedDifficultByLevel = 0.1f, bulletCooldownDifficultByLevel = 0.04f;
+    public float bulletMaxSpeed = 4f, bulletMaxCooldown = 0.2f;
+    float bulletSpeed, bulletCooldown, timeLastBullet;
     bool isActive = false;
-    public float rotationSpeed = 0f;
 
     void Awake()
     {
         foreach (Transform cannon in transform.Find("Cannons")) cannons.Add(cannon);
+        bulletSpeed = bulletInitialSpeed;
+        bulletCooldown = bulletInitialCooldown;
     }
 
     public void AwakeEnemy()
     {
+        GameManager.Instance.levelNumber.OnChanged += LevelChanged;
         transform.gameObject.SetActive(true);
-        timeLastBullet = Time.time + bulletCooldown; // To avoid bullets at the very start
+        timeLastBullet = Time.time + bulletCooldown;
         isActive = true;
     }
 
-    public void LevelUp()
+    public void SleepEnemy()
     {
-        if (bulletSpeed < 4f) bulletSpeed += 0.1f;
-        if (bulletCooldown > 0.2f) bulletCooldown -= 0.04f;
-        var newRotation = Mathf.Abs(rotationSpeed) + 5;
-        // if (newRotation % 2 == 0) newRotation *= -1;
-        // rotationSpeed = newRotation;
+        isActive = false;
     }
 
-    void Update()
+    public void LevelChanged()
+    {
+        SetDifficulty(GameManager.Instance.levelNumber.Value);
+    }
+
+    public void SetDifficulty(int level)
+    {
+        bulletSpeed = Mathf.Clamp(bulletInitialSpeed + bulletSpeedDifficultByLevel * level, bulletInitialSpeed, bulletMaxSpeed);
+        bulletCooldown = Mathf.Clamp(bulletInitialCooldown - bulletCooldownDifficultByLevel * level, bulletMaxCooldown, bulletInitialCooldown);
+    }
+
+    void FixedUpdate()
     {
         if (!isActive) return;
         if (Time.time > timeLastBullet + bulletCooldown) ShotRandom();
-        transform.Rotate(Vector3.forward, Time.deltaTime * rotationSpeed);
     }
 
     void ShotRandom()

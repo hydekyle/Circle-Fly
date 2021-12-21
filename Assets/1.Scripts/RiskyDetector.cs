@@ -8,7 +8,6 @@ public class RiskyDetector : MonoBehaviour
 {
     public Animator hotScore;
     public TMP_Text hotScoreText;
-    public GameManager gameManager;
     public GameObject playerGO;
     byte bullets = 0;
     float wowCooldown = 1f;
@@ -19,12 +18,12 @@ public class RiskyDetector : MonoBehaviour
         await UniTask.DelayFrame(20);
         if (playerGO.activeSelf && Time.time > lastTimeWow + wowCooldown)
         {
-            var addScore = 100 * gameManager.levelNumber;
+            var addScore = 100 * GameManager.Instance.levelNumber.Value;
             hotScoreText.text = "Risky!\n+" + addScore;
-            hotScore.transform.position = gameManager.playerT.transform.position;
+            hotScore.transform.position = GameManager.Instance.playerT.transform.position / 2;
             hotScore.Play(0);
-            gameManager.AddScore(addScore);
-            gameManager.audioSource.PlayOneShot(gameManager.wowRisky);
+            GameManager.Instance.AddScore(addScore);
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.wowRisky);
             lastTimeWow = Time.time;
         }
     }

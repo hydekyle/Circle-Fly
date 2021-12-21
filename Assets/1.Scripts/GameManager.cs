@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 using EZObjectPools;
 using Cysharp.Threading.Tasks;
 using TMPro;
+using UnityObservables;
+
+[System.Serializable]
+public class ObservableInt : Observable<int> { }
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
     [Header("References")]
     public Transform playerT;
     public EZObjectPool poolCoins;
@@ -18,22 +23,38 @@ public class GameManager : MonoBehaviour
     public AudioClip coinGrab, jiggleLevelCompleted, wowRisky, playerDie;
     [Header("Configuration")]
     public int totalCoins = 30;
+    public ObservableInt levelNumber = new ObservableInt() { Value = 1 };
     [HideInInspector]
     public bool isGameStarted = false;
-    [HideInInspector]
-    public int levelNumber = 1;
     Player player;
     int activeCoins = 0;
     int score = 0;
     public float levelStartedTime;
 
+    void Awake()
+    {
+        if (Instance != null) Destroy(Instance.gameObject);
+        Instance = this;
+    }
+
     void Start()
     {
+        levelNumber.OnChanged += OnLevelChanged;
         player = playerT.GetComponent<Player>();
         if (PlayerPrefs.HasKey("Score"))
         {
             var score = PlayerPrefs.GetInt("Score");
             maxScore.text = "MAX SCORE: \n " + score.ToString();
+        }
+        AdManager.ShowBannerAD();
+    }
+
+    void OnLevelChanged()
+    {
+        if (activeCoins == 0)
+        {
+            ScoreTimeBonus();
+            SpawnCoins();
         }
     }
 
@@ -45,19 +66,6 @@ public class GameManager : MonoBehaviour
         await UniTask.DelayFrame(10);
         levelStartedTime = Time.time;
         isGameStarted = true;
-    }
-
-    void LevelCompleted()
-    {
-        levelNumber++;
-        IncreaseDifficulty();
-        ScoreTimeBonus();
-        SpawnCoins();
-    }
-
-    void IncreaseDifficulty()
-    {
-        enemy.LevelUp();
     }
 
     async void ScoreTimeBonus()
@@ -72,12 +80,11 @@ public class GameManager : MonoBehaviour
             if (timeScore > 0)
             {
                 timeBonusText.text = "Time Bonus!\n+" + timeScore;
-                timeBonusAnimator.transform.position = playerT.position;
+                timeBonusAnimator.transform.position = playerT.position / 2;
                 timeBonusAnimator.Play(0);
                 AddScore(timeScore);
             }
         }
-
     }
 
     public void AddScore(int addScore)
@@ -91,7 +98,7 @@ public class GameManager : MonoBehaviour
         audioSource.PlayOneShot(coinGrab);
         AddScore(10);
         activeCoins--;
-        if (activeCoins == 0) LevelCompleted();
+        if (activeCoins == 0) levelNumber.Value++;
     }
 
     void SpawnCoins()
@@ -130,8 +137,16 @@ public class GameManager : MonoBehaviour
         }
         playerT.gameObject.SetActive(false);
         audioSource.PlayOneShot(playerDie);
+        enemy.SleepEnemy();
         await UniTask.DelayFrame(10);
         await UniTask.WaitUntil(() => Input.GetMouseButtonDown(0));
-        SceneManager.LoadScene(1);
+        await SceneManager.LoadSceneAsync(1);
+        AdManager.ShowInterstitialAD();
     }
+
+    public void ShowRewardButton()
+    {
+        AdManager.ShowRewardAD();
+    }
+
 }

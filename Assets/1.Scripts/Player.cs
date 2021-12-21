@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameManager gameManager;
-    public SpriteRenderer rendererPlayer;
+    SpriteRenderer rendererPlayer;
     public float orbitRadius;
     public float rotationSpeed = 0.5f;
     public int dir = 1;
@@ -31,18 +30,18 @@ public class Player : MonoBehaviour
     void GetCoin(GameObject coin)
     {
         coin.SetActive(false);
-        gameManager.AddCoin();
+        GameManager.Instance.AddCoin();
     }
 
     void BulletHit(GameObject bullet)
     {
         bullet.SetActive(false);
-        gameManager.EndGame();
+        GameManager.Instance.EndGame();
     }
 
     void Update()
     {
-        if (!gameManager.isGameStarted) return;
+        if (!GameManager.Instance.isGameStarted) return;
         riskyDetector.position = transform.position;
         riskyDetector.rotation = transform.rotation;
         if (Input.GetMouseButtonDown(0))

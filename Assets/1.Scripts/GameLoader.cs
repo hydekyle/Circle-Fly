@@ -8,7 +8,7 @@ public class GameLoader : MonoBehaviour
 {
     async void Start()
     {
-        await UniTask.DelayFrame(100);
+        await UniTask.WaitUntil(() => AdManager.isInitialized == true);
         SceneManager.LoadScene(1);
     }
 }
